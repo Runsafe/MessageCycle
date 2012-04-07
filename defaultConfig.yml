@@ -1,0 +1,5 @@
+#default config.yml
+
+ cycleTime: 30
+ messages:
+ - "This is a test message, configure me properly."
