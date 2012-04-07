@@ -1,0 +1,5 @@
+name: MessageCycle
+main: me.Kruithne.MessageCycle.MessageCycle
+version: 1.0
+author: Kruithne
+description: Cycles through a selection of messages, broadcasting them accross the server.
