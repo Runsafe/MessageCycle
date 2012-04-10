@@ -43,6 +43,7 @@ public class MessageCycler implements IPluginEnabled, IPluginDisabled
 	{
 		this.cycleEnabled = true;
 		this.setupIterator();
+		this.registerNewMessage();
 	}
 	
 	private void stopCycle()
