@@ -3,11 +3,11 @@ package me.Kruithne.MessageCycle;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import no.runsafe.framework.interfaces.IConfiguration;
-import no.runsafe.framework.interfaces.IOutput;
-import no.runsafe.framework.interfaces.IPluginDisabled;
-import no.runsafe.framework.interfaces.IPluginEnabled;
-import no.runsafe.framework.interfaces.IScheduler;
+import no.runsafe.framework.configuration.IConfiguration;
+import no.runsafe.framework.event.subscriber.IPluginDisabled;
+import no.runsafe.framework.event.subscriber.IPluginEnabled;
+import no.runsafe.framework.output.IOutput;
+import no.runsafe.framework.timer.IScheduler;
 
 public class MessageCycler implements IPluginEnabled, IPluginDisabled
 {
