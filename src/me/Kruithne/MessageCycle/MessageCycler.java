@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import no.runsafe.framework.configuration.IConfiguration;
-import no.runsafe.framework.event.subscriber.IPluginDisabled;
-import no.runsafe.framework.event.subscriber.IPluginEnabled;
+import no.runsafe.framework.event.IPluginDisabled;
+import no.runsafe.framework.event.IPluginEnabled;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.timer.IScheduler;
 
@@ -83,7 +83,7 @@ public class MessageCycler implements IPluginEnabled, IPluginDisabled
 	{
 		if (this.cycleEnabled)
 		{
-			this.scheduler.setTimedEvent(new Runnable() {
+			this.scheduler.startSyncTask(new Runnable() {
 				public void run()
 				{
 					broadcastNextMessage();
