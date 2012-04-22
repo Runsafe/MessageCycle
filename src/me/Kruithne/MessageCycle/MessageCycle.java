@@ -1,19 +1,18 @@
 package me.Kruithne.MessageCycle;
 
-import java.io.InputStream;
-
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.configuration.IConfigurationDefaults;
 import no.runsafe.framework.configuration.IConfigurationFile;
 
-public class MessageCycle extends RunsafePlugin implements IConfigurationFile, IConfigurationDefaults
+import java.io.InputStream;
+
+public class MessageCycle extends RunsafePlugin implements IConfigurationFile
 {
 
 	public MessageCycle()
 	{
 		super();
 	}
-	
+
 	@Override
 	protected void PluginSetup()
 	{
@@ -31,7 +30,4 @@ public class MessageCycle extends RunsafePlugin implements IConfigurationFile, I
 	{
 		return Constants.configurationFile;
 	}
-	
-	
-	
 }
