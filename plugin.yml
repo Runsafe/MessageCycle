@@ -1,5 +1,5 @@
 name: MessageCycle
-main: me.Kruithne.MessageCycle.Plugin
+main: no.runsafe.messageCycle.Plugin
 version: 1.0
 author: Kruithne
 description: Cycles through a selection of messages, broadcasting them across the server.

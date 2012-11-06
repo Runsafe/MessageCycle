@@ -1,4 +1,4 @@
-package me.Kruithne.MessageCycle;
+package no.runsafe.messageCycle;
 
 import java.util.ArrayList;
 import java.util.Iterator;
