@@ -73,12 +73,7 @@ public class MessageCycler implements IPluginEnabled, IPluginDisabled, IConfigur
 
 		if (this.messageIterator.hasNext())
 		{
-			this.output.outputToServer(
-				String.format(
-					ChatColor.GOLD + "[Server]: " + ChatColor.YELLOW + "%s",
-					this.messageIterator.next()
-				)
-			);
+			output.broadcastColoured("&6[SERVER]: &e%s", this.messageIterator.next());
 		}
 
 		this.registerNewMessage();
