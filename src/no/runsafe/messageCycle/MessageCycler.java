@@ -31,6 +31,7 @@ public class MessageCycler implements IPluginEnabled, IPluginDisabled, IConfigur
 	{
 		this.messages = (ArrayList<String>) configuration.getConfigValueAsList("messages");
 		this.messageDelay = configuration.getConfigValueAsInt("cycleTime");
+		setupIterator();
 	}
 
 	@Override
