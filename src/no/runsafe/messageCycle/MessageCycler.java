@@ -1,15 +1,14 @@
 package no.runsafe.messageCycle;
 
+import no.runsafe.framework.api.IConfiguration;
+import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.event.plugin.IConfigurationChanged;
+import no.runsafe.framework.api.event.plugin.IPluginDisabled;
+import no.runsafe.framework.api.event.plugin.IPluginEnabled;
+
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import no.runsafe.framework.configuration.IConfiguration;
-import no.runsafe.framework.event.IConfigurationChanged;
-import no.runsafe.framework.event.IPluginDisabled;
-import no.runsafe.framework.event.IPluginEnabled;
-import no.runsafe.framework.output.IOutput;
-import no.runsafe.framework.timer.IScheduler;
-import org.bukkit.ChatColor;
 
 public class MessageCycler implements IPluginEnabled, IPluginDisabled, IConfigurationChanged
 {
