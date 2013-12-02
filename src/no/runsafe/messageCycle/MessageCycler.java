@@ -3,14 +3,18 @@ package no.runsafe.messageCycle;
 import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.event.player.IPlayerJoinEvent;
+import no.runsafe.framework.api.event.player.IPlayerQuitEvent;
 import no.runsafe.framework.api.event.plugin.IConfigurationChanged;
 import no.runsafe.framework.api.event.plugin.IPluginDisabled;
 import no.runsafe.framework.api.event.plugin.IPluginEnabled;
+import no.runsafe.framework.minecraft.event.player.RunsafePlayerJoinEvent;
+import no.runsafe.framework.minecraft.event.player.RunsafePlayerQuitEvent;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class MessageCycler implements IPluginEnabled, IPluginDisabled, IConfigurationChanged
+public class MessageCycler implements IPluginEnabled, IPluginDisabled, IConfigurationChanged, IPlayerJoinEvent, IPlayerQuitEvent
 {
 	private boolean cycleEnabled = false;
 	private final IScheduler scheduler;
@@ -45,10 +49,37 @@ public class MessageCycler implements IPluginEnabled, IPluginDisabled, IConfigur
 		this.startCycle();
 	}
 
+	@Override
+	public void OnPlayerJoinEvent(RunsafePlayerJoinEvent runsafePlayerJoinEvent)
+	{
+		players++;
+		if(!cycleEnabled)
+			resumeCycle();
+	}
+
+	@Override
+	public void OnPlayerQuit(RunsafePlayerQuitEvent runsafePlayerQuitEvent)
+	{
+		players--;
+		if(players < 1)
+			pauseCycle();
+	}
+
 	private void startCycle()
 	{
 		this.cycleEnabled = true;
 		this.setupIterator();
+		this.registerNewMessage();
+	}
+
+	private void pauseCycle()
+	{
+		this.cycleEnabled = false;
+	}
+
+	private void resumeCycle()
+	{
+		this.cycleEnabled = true;
 		this.registerNewMessage();
 	}
 
@@ -92,4 +123,6 @@ public class MessageCycler implements IPluginEnabled, IPluginDisabled, IConfigur
 			}, this.messageDelay);
 		}
 	}
+
+	private int players = 0;
 }
