@@ -7,16 +7,16 @@ import no.runsafe.framework.api.event.player.IPlayerJoinEvent;
 import no.runsafe.framework.api.event.player.IPlayerQuitEvent;
 import no.runsafe.framework.api.event.plugin.IConfigurationChanged;
 import no.runsafe.framework.api.event.plugin.IPluginDisabled;
-import no.runsafe.framework.api.event.plugin.IPluginEnabled;
 import no.runsafe.framework.minecraft.event.player.RunsafePlayerJoinEvent;
 import no.runsafe.framework.minecraft.event.player.RunsafePlayerQuitEvent;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class MessageCycler implements IPluginEnabled, IPluginDisabled, IConfigurationChanged, IPlayerJoinEvent, IPlayerQuitEvent
+public class MessageCycler implements IPluginDisabled, IConfigurationChanged, IPlayerJoinEvent, IPlayerQuitEvent
 {
 	private boolean cycleEnabled = false;
+	private boolean cycleStarted = false;
 	private final IScheduler scheduler;
 	private final IOutput output;
 	private ArrayList<String> messages;
@@ -44,12 +44,6 @@ public class MessageCycler implements IPluginEnabled, IPluginDisabled, IConfigur
 	}
 
 	@Override
-	public void OnPluginEnabled()
-	{
-		this.startCycle();
-	}
-
-	@Override
 	public void OnPlayerJoinEvent(RunsafePlayerJoinEvent runsafePlayerJoinEvent)
 	{
 		players++;
@@ -67,7 +61,7 @@ public class MessageCycler implements IPluginEnabled, IPluginDisabled, IConfigur
 
 	private void startCycle()
 	{
-		this.cycleEnabled = true;
+		this.cycleEnabled = this.cycleStarted = true;
 		this.setupIterator();
 		this.registerNewMessage();
 	}
@@ -79,8 +73,15 @@ public class MessageCycler implements IPluginEnabled, IPluginDisabled, IConfigur
 
 	private void resumeCycle()
 	{
-		this.cycleEnabled = true;
-		this.registerNewMessage();
+		if (!cycleStarted)
+		{
+			startCycle();
+		}
+		else
+		{
+			this.cycleEnabled = true;
+			this.registerNewMessage();
+		}
 	}
 
 	private void stopCycle()
