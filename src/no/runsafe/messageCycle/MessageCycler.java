@@ -47,7 +47,7 @@ public class MessageCycler implements IPluginDisabled, IConfigurationChanged, IP
 	public void OnPlayerJoinEvent(RunsafePlayerJoinEvent runsafePlayerJoinEvent)
 	{
 		players++;
-		if(!cycleEnabled)
+		if (!cycleEnabled)
 			resumeCycle();
 	}
 
@@ -55,7 +55,7 @@ public class MessageCycler implements IPluginDisabled, IConfigurationChanged, IP
 	public void OnPlayerQuit(RunsafePlayerQuitEvent runsafePlayerQuitEvent)
 	{
 		players--;
-		if(players < 1)
+		if (players < 1)
 			pauseCycle();
 	}
 
@@ -98,6 +98,9 @@ public class MessageCycler implements IPluginDisabled, IConfigurationChanged, IP
 
 	private void broadcastNextMessage()
 	{
+		if (!this.cycleEnabled)
+			return;
+
 		if (!this.messageIterator.hasNext())
 		{
 			this.setupIterator();
