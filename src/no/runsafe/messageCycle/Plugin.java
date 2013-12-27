@@ -9,6 +9,6 @@ public class Plugin extends RunsafeConfigurablePlugin
 	protected void pluginSetup()
 	{
 		addComponent(Events.class);
-		this.addComponent(MessageCycler.class);
+		addComponent(MessageCycler.class);
 	}
 }
