@@ -92,9 +92,7 @@ public class MessageCycler implements IPluginDisabled, IConfigurationChanged, IP
 	private void registerNewMessage()
 	{
 		if (cycleEnabled)
-		{
 			task = scheduler.startSyncTask(this, messageDelay);
-		}
 	}
 
 	public void run()
