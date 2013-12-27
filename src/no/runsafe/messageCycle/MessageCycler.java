@@ -65,8 +65,7 @@ public class MessageCycler implements IPluginDisabled, IConfigurationChanged, IP
 
 	private void setupIterator()
 	{
-		if (messageIterator == null)
-			messageIterator = messages.iterator();
+		messageIterator = messages.iterator();
 	}
 
 	private void broadcastNextMessage()
