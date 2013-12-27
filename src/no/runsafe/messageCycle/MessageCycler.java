@@ -24,15 +24,15 @@ public class MessageCycler implements IPluginDisabled, IConfigurationChanged, IP
 	@Override
 	public void OnConfigurationChanged(IConfiguration configuration)
 	{
-		this.messages = configuration.getConfigValueAsList("messages");
-		this.messageDelay = configuration.getConfigValueAsInt("cycleTime");
+		messages = configuration.getConfigValueAsList("messages");
+		messageDelay = configuration.getConfigValueAsInt("cycleTime");
 		setupIterator();
 	}
 
 	@Override
 	public void OnPluginDisabled()
 	{
-		this.stopCycle();
+		stopCycle();
 	}
 
 	@Override
@@ -44,14 +44,14 @@ public class MessageCycler implements IPluginDisabled, IConfigurationChanged, IP
 
 	private void startCycle()
 	{
-		this.cycleEnabled = true;
-		this.setupIterator();
-		this.registerNewMessage();
+		cycleEnabled = true;
+		setupIterator();
+		registerNewMessage();
 	}
 
 	private void pauseCycle()
 	{
-		this.cycleEnabled = false;
+		cycleEnabled = false;
 		if (task > 0)
 			scheduler.cancelTask(task);
 	}
@@ -59,19 +59,19 @@ public class MessageCycler implements IPluginDisabled, IConfigurationChanged, IP
 	private void stopCycle()
 	{
 		pauseCycle();
-		this.messageIterator = null;
-		this.messages.clear();
+		messageIterator = null;
+		messages.clear();
 	}
 
 	private void setupIterator()
 	{
 		if (messageIterator == null)
-			this.messageIterator = this.messages.iterator();
+			messageIterator = messages.iterator();
 	}
 
 	private void broadcastNextMessage()
 	{
-		if (!this.cycleEnabled)
+		if (!cycleEnabled)
 			return;
 
 		if (server.getOnlinePlayers().size() == 0)
@@ -80,20 +80,20 @@ public class MessageCycler implements IPluginDisabled, IConfigurationChanged, IP
 			return;
 		}
 
-		if (!this.messageIterator.hasNext())
-			this.setupIterator();
+		if (!messageIterator.hasNext())
+			setupIterator();
 
-		if (this.messageIterator.hasNext())
-			output.broadcastColoured("&6[SERVER]: &e%s", this.messageIterator.next());
+		if (messageIterator.hasNext())
+			output.broadcastColoured("&6[SERVER]: &e%s", messageIterator.next());
 
 		this.registerNewMessage();
 	}
 
 	private void registerNewMessage()
 	{
-		if (this.cycleEnabled)
+		if (cycleEnabled)
 		{
-			task = this.scheduler.startSyncTask(this, this.messageDelay);
+			task = scheduler.startSyncTask(this, messageDelay);
 		}
 	}
 
