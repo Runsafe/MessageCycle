@@ -86,7 +86,7 @@ public class MessageCycler implements IPluginDisabled, IConfigurationChanged, IP
 		if (messageIterator.hasNext())
 			output.broadcastColoured("&6[SERVER]: &e%s", messageIterator.next());
 
-		this.registerNewMessage();
+		registerNewMessage();
 	}
 
 	private void registerNewMessage()
