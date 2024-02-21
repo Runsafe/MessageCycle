@@ -73,7 +73,7 @@ public class MessageCycler implements IPluginDisabled, IConfigurationChanged, IP
 		if (!cycleEnabled)
 			return;
 
-		if (server.getOnlinePlayers().size() == 0)
+		if (server.getOnlinePlayers().isEmpty())
 		{
 			pauseCycle();
 			return;
